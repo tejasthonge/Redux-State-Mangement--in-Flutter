@@ -7,4 +7,6 @@ import 'package:redux/redux.dart';
 
 final store = Store<AppState>(
   counterReducer,
-  initialState: AppState.initialState());
+  initialState: AppState.initialState()); 
+
+  

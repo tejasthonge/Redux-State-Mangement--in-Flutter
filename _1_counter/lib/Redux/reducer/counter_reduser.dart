@@ -5,7 +5,7 @@ import 'package:_1_counter/Redux/actions/dicreement_action.dart';
 import 'package:_1_counter/Redux/actions/increement_action.dart';
 import 'package:_1_counter/Redux/state/app_state.dart';
 
-AppState counterReducer( AppState state ,dynamic acction){
+AppState counterReducer(AppState state ,dynamic acction){
 
   if(acction is IncrrementAction){
   

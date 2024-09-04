@@ -3,7 +3,8 @@ import 'package:_3_shopping_cart_app/shoping_list.dart';
 import 'package:flutter/material.dart';
 
 class ShopingCart extends StatelessWidget {
-  const ShopingCart({super.key});
+  final store ;
+  const ShopingCart({super.key,required this.store});
 
   @override
   Widget build(BuildContext context) {
@@ -12,17 +13,17 @@ class ShopingCart extends StatelessWidget {
         title: Text("Shopping cart app"),
         centerTitle: true,
       ),
-      drawer: Drawer(
+      drawer:const  Drawer(
         child: Column(
           children: [Text("we are crreating ths app by using redux as statge mangement")],
         ),
       ),
-      body: ShopoingList(),
+      body: ShopoingList(store: store,),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _oppenAddToDoDiloag(context);
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

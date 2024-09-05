@@ -101,3 +101,111 @@ Store
 
     it it has on optinal importante argument aslo called as
         3 middleware  //this is also named but it is optional 
+
+
+
+////////////////////////////////////////////////////////////////
+
+
+flutter_redux packge:
+
+    - A Set of utilitues that allow you to easilyconsume a redux store 
+    to build flutter widget 
+
+    - react-redux pakage in react
+
+
+
+Dependancer enjection :
+    it is nothing but passing the data that is store in wedget tree so it is so easy 
+    to to that flutter redux hase StoreProvider widgets
+    it hase to requred argument one is 
+        strore 
+        child
+
+    
+StoreProvider
+    it provide a redux store to all descndants of storePRovider widget
+        - in ordr to be able to user store injection by storePRovidr in the entire widget three
+        Material must be wrapped in StoreProvider
+
+            -- StoreProvider( 
+                store:store,
+                child :MaterialApp()
+            )
+
+
+it hase other widget or builders lilke:
+    1StroeBuilder
+    2StoreConnecttor: it is like consumer in StoreProvider
+    2StoreProvider 
+    
+by this above way the dependcey injection part in redux or flutter is resolve
+
+
+
+//StoreBuilder:
+    build a widget by passing the store directly to the build function
+        storeBuilder is not recommeded for use exept for very simple apps that do not 
+        requied perfomance optimization
+            every time the store change the widget will be rebuilt
+        
+        Generally it is consided best practice to use storeConnector and to buil a viewModel specifically for your widget rathe than passing through the entire store
+
+
+            viewModel: it an object with data and method neceesry to build UI
+            
+        but this is provided for conveniece when that isnt neccerry
+
+
+    eg:
+
+        @Widget build(BuildContext context){
+
+            return StoreBuilder<CounterState>(
+
+                store:store,
+                builder:(BuildContext context ,Store<CounterState> store){ 
+                    return Scaffold( 
+
+                        body: Column( 
+
+                            children:[ 
+
+                                Text( 
+                                    "$store.state.counter" ,
+                                )
+                            ]
+                        )
+
+                        floatingAcionBotton:ElivatedButton( 
+                            child:Text("Icreement count")
+                            onTap:(){
+                                store.dispathc(IncrementAction(payload:2));
+                            }
+                        )
+                    );
+
+                }
+            );
+        }
+
+
+
+
+
+
+//StoreConnector:
+
+    -it is similar toStoreBuilder bu with finer graine control
+        -storeBuilder :Store
+        -StoreConnector :viewModel
+
+            - viewModel :an object with data and methods are necessery to build UI
+            - we need to implemet converter callback that converts store to viewmodel
+
+    -perfomance Optimization:
+
+        needs extr work so that the widget can  rebuild only when the viewmodel changes 
+            - need to override equality oprator(==) and hashcodes
+            -set distict option to ture

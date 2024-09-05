@@ -104,5 +104,5 @@ CounterState counterReduser( CounterState state ,  dynamic action){
   return state;// if the action is not above of type then we retuning as it is state as above
 }
 void main() {
- 
+  
 }

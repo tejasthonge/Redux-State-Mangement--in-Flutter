@@ -10,6 +10,9 @@ class ShopingItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dismissible(
+      // onDismissed: (direction) {
+      //   StoreProvider.of<List<CartItem>>(context).dispatch(DelleatItemAction(item));
+      // },
       key: Key("value"),
       child: ListTile(
         title: Text(item.name),
@@ -19,6 +22,7 @@ class ShopingItem extends StatelessWidget {
             StoreProvider.of<List<CartItem>>(context).dispatch(ToggleStateAction(item));
           },
         ),
+        
         // trailing: Icon(Icons.delete),
       ),
     );

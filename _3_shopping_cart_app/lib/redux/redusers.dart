@@ -1,5 +1,7 @@
 //the reduser is nothing just funtion in the redux state mang. it is store the previse state and take new action and passed to the store
 
+import 'dart:developer';
+
 import 'package:_3_shopping_cart_app/models/cart_item.dart';
 import 'package:_3_shopping_cart_app/redux/actions.dart';
 
@@ -17,6 +19,7 @@ List<CartItem> cartItemReduserList(List<CartItem> state, dynamic action) {
 }
 
 List<CartItem> addItem(List<CartItem> state, AddItemAction action) {
+  log(action.item.name);
   return List.from(state)..add(action.item);
 }
 

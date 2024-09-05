@@ -1,0 +1,103 @@
+single Source of truth:
+    -the globle state of your application is store in an object tree within a single store
+
+State is read only :
+
+    the only way to change the state is to emit an action abject describing what happend
+
+
+Change are made with pure functions
+    -to specify how the state tree is transfored by actions you write pure deducrs 
+
+
+  event habdler(Dispath)   ---> Store<state>
+            ^                     
+            |                     |
+            -----<    UI    <-----
+
+
+
+#reduser 
+
+    -it is an pure functions that recives the previou state and action from
+    and returen a new state
+        - we have to create and  return a completely new stat withou changig the 
+        previous state
+
+    -pure function
+        - returen the same output when given the same input
+        - must not contain side effects
+
+
+redux keeps the app state in one place 
+you must update the app state only in the presribed way
+
+
+means- a rule, guide, or course of action that has been set down, or a way that conforms to a set usage, procedure, or discipline
+
+
+
+core packges : --
+                redux 
+                flutter_redux
+                redux_thunk
+
+
+                redux:
+                    -a core library that allow you to mange and update the centrlized
+                    app state using event called actions
+                
+                flutter_redux: : 
+                    - a set of utility that makes it easy to use the redyx store to byukd flutter widgets
+
+                redux_thunk: 
+                    - a packges that makes it easy for your reduX app to handle async opreations that are almost always included in mider apps
+
+
+
+
+State :
+    - the state can be any value 
+        -like prmitive type :string ,int 
+        - or we defined class
+
+    Use class-type state whenever it possible
+
+
+Action:
+    action due to that it will resion state will we change
+    type +Payload
+    type:it is type of action to to describing the action are which type 
+    paylaod :it is the adition data required to peform the action 
+
+
+
+Reduser 
+
+    -it is pure function that takes two arguments
+    and computes a new state
+
+    this funtin take the tow arguments that is 
+        1 current state 
+        2 action 
+
+           depedend on 
+             that 
+              it
+
+
+            new state
+            is defined
+            
+             
+    
+
+
+Store 
+    - it hold the app stat tree
+    it is the class having two requird arguments: 
+        1 reduser  //this is positinal 
+        2 intial state  //this named 
+
+    it it has on optinal importante argument aslo called as
+        3 middleware  //this is also named but it is optional 

@@ -1,0 +1,65 @@
+single Source of truth:
+    -the globle state of your application is store in an object tree within a single store
+
+State is read only :
+
+    the only way to change the state is to emit an action abject describing what happend
+
+
+Change are made with pure functions
+    -to specify how the state tree is transfored by actions you write pure deducrs 
+
+
+  event habdler(Dispath)   ---> Store<state>
+            ^                     
+            |                     |
+            -----<    UI    <-----
+
+
+
+#reduser 
+
+    -it is an pure functions that recives the previou state and action from
+    and returen a new state
+        - we have to create and  return a completely new stat withou changig the 
+        previous state
+
+    -pure function
+        - returen the same output when given the same input
+        - must not contain side effects
+
+
+redux keeps the app state in one place 
+you must update the app state only in the presribed way
+
+
+means- a rule, guide, or course of action that has been set down, or a way that conforms to a set usage, procedure, or discipline
+
+
+
+core packges : --
+                redux 
+                flutter_redux
+                redux_thunk
+
+
+                redux:
+                    -a core library that allow you to mange and update the centrlized
+                    app state using event called actions
+                
+                flutter_redux: : 
+                    - a set of utility that makes it easy to use the redyx store to byukd flutter widgets
+
+                redux_thunk: 
+                    - a packges that makes it easy for your reduX app to handle async opreations that are almost always included in mider apps
+
+
+
+
+State :
+    - the state can be any value 
+        -like prmitive type :string ,int 
+        - or we defined class
+
+    Use class-type state whenever it possible
+    

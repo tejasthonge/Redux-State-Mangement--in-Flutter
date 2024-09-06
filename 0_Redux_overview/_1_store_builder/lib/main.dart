@@ -1,6 +1,3 @@
-import 'package:redux/redux.dart';
-import 'package:redux_dart_counter/redux_dart_counter.dart' as redux_dart_counter;
-
 
 //following class is the all state conteing in the follwing class this is class if thire is no other state
 // State :
@@ -10,8 +7,13 @@ import 'package:redux_dart_counter/redux_dart_counter.dart' as redux_dart_counte
 
 //     Use class-type state whenever it possible
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redux/redux.dart';
+
 class CounterState{
-  final int counter;  //the state is imutable the resuon of the final variable 
+  final int counter;  //the state is imutable the resion of the final variable 
   const CounterState({required this.counter});
 
   //thire is only way to chnage the counter variable 
@@ -113,7 +115,54 @@ final Store<CounterState> store = Store<CounterState>(
 
 
 void main() {
+  runApp( MyApp(store: store,));
+}
 
-  
-  
+
+class MyApp extends StatelessWidget {
+  final store;
+  const MyApp({super.key,required this.store});
+
+  @override
+  Widget build(BuildContext context) {
+    return StoreProvider<CounterState >(
+      store: store!,
+      child:  MaterialApp( 
+          home: Scaffold( 
+        
+            body:StoreBuilder<CounterState>(  //thsi is buil all ovre the state object but some time we donot require this type of obect or that object state was not changed but also we are rebuild this 
+            //so as respective to profamace this storebuilder is not good to repace of it we will use the stor connector
+            
+              
+              builder: (context ,store) {
+                return Center( 
+                
+                  child: Text( 
+                    store.state.counter.toString()
+                  )
+                );
+              }
+            ),
+            floatingActionButton: Row(
+
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                 FloatingActionButton(
+              onPressed: () {
+                store.dispatch(DecrementAction(payload: 1)); //this diapatch method is used to pass the action to the reducer and then dpednding upon cation type the action will take the paylad and handle the state anre create the  new state and redering on the screen 
+              },
+              child: Icon(Icons.arrow_downward,),),
+              const SizedBox(width: 20,),
+                FloatingActionButton(
+                  onPressed: () {
+                    store.dispatch(IncrementAction(payload: 1));
+                  },
+                  child: Icon(Icons.arrow_upward),),
+              ],
+            )
+          ),
+        )
+      
+    );
+  }
 }

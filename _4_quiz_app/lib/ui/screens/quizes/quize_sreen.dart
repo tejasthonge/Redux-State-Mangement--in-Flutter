@@ -1,7 +1,12 @@
+import 'dart:math';
+
+import 'package:_4_quiz_app/data/quizes.dart';
 import 'package:_4_quiz_app/store/ansswer/actions.dart';
 import 'package:_4_quiz_app/store/app/app_state.dart';
 import 'package:_4_quiz_app/store/questions/question_state.dart';
 import 'package:_4_quiz_app/store/questions/qutions_action.dart';
+import 'package:_4_quiz_app/store/score/score_actions.dart';
+import 'package:_4_quiz_app/ui/screens/quizes/score_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
@@ -46,7 +51,7 @@ class QuizeSreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(7),
                       color: const Color.fromARGB(255, 255, 135, 7)),
                   child: Text(
-                    "${store.state.questionState.carrectAnsIndex +1}. ${vm.question}",
+                    "${store.state.questionState.currentQutionIndex +1}. ${vm.question}",
                     style: const TextStyle(
                         color: Color.fromARGB(255, 255, 255, 255),
                         fontSize: 22,
@@ -71,6 +76,7 @@ class QuizeSreen extends StatelessWidget {
                             onTap: () {
                               if(store.state.sellectedAnsswerState.sellctedAnsswerIndex == -1){
                                 vm.sellOption(index);
+                                vm.setScore(index);
                                }
                             },
                             leading: Text((index + 1).toString(),
@@ -95,7 +101,14 @@ class QuizeSreen extends StatelessWidget {
             ),
             floatingActionButton: InkWell(
               onTap: () {
-                vm.nexQution(store.state.questionState.currentQutionIndex + 1);
+                if( questionsList.length> store.state.questionState.currentQutionIndex+1){
+                  vm.nexQution(store.state.questionState.currentQutionIndex + 1);
+                }
+                else{
+                  Navigator.of(context).push( 
+                    MaterialPageRoute(builder: (_)=>ScoreScreen(store: store,))
+                  );
+                }
                 vm.refreshSellctedAnsIndex();
               },
               child: Container(
@@ -107,8 +120,11 @@ class QuizeSreen extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: Colors.grey,
                     borderRadius: BorderRadius.circular(20)),
-                child: const Text(
-                  "NEXT",
+                child:  Text(
+                  questionsList.length!= store.state.questionState.currentQutionIndex+1?
+                  "NEXT":
+                  "SCORE"
+                  ,
                   style: TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 ),
@@ -123,17 +139,21 @@ class _ViewModel {
   String question;
   List<String> options;
   final void Function(int sellectedOtpionIndex) sellOption;
+  final void Function(int sellectedOtpionIndex) setScore;
   final void Function(int nextQutionIndex) nexQution;
   final void Function() refreshSellctedAnsIndex;
 
   _ViewModel(
+
       {required this.refreshSellctedAnsIndex,
       required this.question,
       required this.options,
       required this.sellOption,
+      required this.setScore,
       required this.nexQution});
   static fromStore(Store<AppState> store) {
     return _ViewModel(
+      
       question: store.state.questionState.question,
       options: store.state.questionState.options,
       sellOption: (index) => store.dispatch(
@@ -142,6 +162,7 @@ class _ViewModel {
           store.dispatch(NextQutionAction(nextQutionIndex: index)),
       refreshSellctedAnsIndex: () =>
           store.dispatch(RefreshSellectedOptionIndexAction()),
+      setScore: (sellectedOtpionIndex) => store.dispatch(AddScoreAction(sellectedAnsIndex: sellectedOtpionIndex)),
     );
   }
 }

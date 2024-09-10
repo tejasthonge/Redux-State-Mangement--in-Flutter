@@ -16,6 +16,13 @@ class ScoreState {
     );
   }
 
+  ScoreState copyWith({int? totleNoQuestions ,int? noOfCorrectAnswer}){
+    return ScoreState(
+      totleNoQuestions: totleNoQuestions?? this.totleNoQuestions,
+      noOfCorrectAnswer: noOfCorrectAnswer?? this.noOfCorrectAnswer,
+    );
+  }
+
 
   
 }

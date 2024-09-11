@@ -63,3 +63,10 @@ State :
 
     Use class-type state whenever it possible
     
+
+
+#Middleware :
+
+    -it is funtion that run before the the dispath function reach to your reducer
+    -this is used at time of pefoming the async opreation sech as takking with web servers
+    -as the respince is get form the the web server than it can dispach the success or failure action

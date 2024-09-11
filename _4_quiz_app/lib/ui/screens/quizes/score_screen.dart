@@ -19,11 +19,11 @@ class ScoreScreen extends StatelessWidget {
         return Scaffold(
           backgroundColor:  const Color.fromARGB(96, 169, 232, 247),
           appBar: AppBar(
-            title: Text('Score'),
+            title: const Text('Score'),
             leading: IconButton(onPressed: (){
                vm.refashQuestion();
               Navigator.pop(context);
-            }, icon: Icon(Icons.arrow_back_ios)),
+            }, icon: const Icon(Icons.arrow_back_ios)),
           ),
           body: Center(
             child: Text('Your score is ${store.state.scoreState.noOfCorrectAnswer} out of ${store.state.scoreState.totleNoQuestions}'),

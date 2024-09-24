@@ -25,7 +25,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StoreProvider<AppState>(
+    return StoreProvider<AppState>(  // if we are use the redux then we must have to make the StoreProvider is parent of the material app and it requires to argumets one store and anathore is child
+    
       store:store,
       child: MaterialApp(
       home: Products(),

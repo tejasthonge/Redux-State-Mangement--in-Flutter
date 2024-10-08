@@ -1,7 +1,4 @@
-import 'dart:async';
-import 'dart:developer';
 
-import 'package:_5auth_api_feath/models/Employee_list.dart';
 import 'package:_5auth_api_feath/models/Enployee_model.dart';
 import 'package:_5auth_api_feath/redux/app/app_state.dart';
 import 'package:_5auth_api_feath/redux/loader/loader_action.dart';
@@ -18,15 +15,9 @@ abstract class EmployeeAction {
 
 class EmployeeListLoadded extends EmployeeAction {
   List<EmployeeModel> employeeList;
-  // final EmployeeList employeeList;
   EmployeeListLoadded({required this.employeeList});
 }
 
-dempfun(EmployeeRepository cdReository) async {
-  final res = await cdReository.getEmployeeList("1");
-
-  log(res.list!.list.length.toString());
-}
 
 ThunkAction<AppState> getEmployeeList( BuildContext context, int page, completer) {
   final cdReository = Provider.of<EmployeeRepository>(context, listen: false);
@@ -38,7 +29,10 @@ ThunkAction<AppState> getEmployeeList( BuildContext context, int page, completer
 
       if (cdResponse.list != null) {
         store.dispatch(EmployeeListLoadded(employeeList: cdResponse.list!.list));
+
       }
+
+
       store.dispatch(LoaderLodingFinish());
       completer.complete();
     } catch (error) {

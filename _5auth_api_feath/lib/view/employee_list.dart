@@ -36,7 +36,11 @@ void initState() {
       backgroundColor: const Color.fromARGB(255, 223, 217, 217),
         appBar: AppBar(
           backgroundColor: Colors.amber.shade200,
-          title: Text("Pixel 6 Project Structure"),
+          title:const Text("Employee List ",
+            style: TextStyle( 
+              color: Colors.white
+            ),
+          ),
         ),
         body: StoreConnector<AppState, _ModelView>(
             onInit: (store) {

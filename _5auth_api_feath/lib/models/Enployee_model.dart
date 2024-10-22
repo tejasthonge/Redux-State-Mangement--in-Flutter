@@ -1,40 +1,100 @@
 import 'dart:convert';
 
+import 'package:hive/hive.dart';
+
 import 'address.dart';
 import 'bank.dart';
 import 'company.dart';
 import 'crypto.dart';
 import 'hair.dart';
+// part 'Enployee_model.g.dart';
 
+// @HiveType(typeId: 1)
 class EmployeeModel {
+  // @HiveField(0)
   final int id;
+
+  // @HiveField(1)
   final String firstName;
+
+  // @HiveField(2)
   final String lastName;
+
+  // @HiveField(3)
   final String maidenName;
+
+  // @HiveField(4)
   final int age;
+
+  // @HiveField(5)
   final String gender;
+
+  // @HiveField(6)
   final String email;
+
+  // @HiveField(7)
   final String phone;
+
+  // @HiveField(8)
   final String username;
+
+  // @HiveField(9)
   final String password;
+
+  // @HiveField(10)
   final String birthDate;
+
+  // @HiveField(11)
   final String image;
+
+  // @HiveField(12)
   final String bloodGroup;
+
+  // @HiveField(13)
   final double height;
+
+  // @HiveField(14)
   final double weight;
+
+  // @HiveField(15)
   final String eyeColor;
+
+  // @HiveField(16)
   final Hair hair;
+
+  // @HiveField(17)
   final String ip;
+
+  // @HiveField(18)
   final Address address;
+
+  // @HiveField(19)
   final String macAddress;
+
+  // @HiveField(20)
   final String university;
+
+  // @HiveField(21)
   final Bank bank;
+
+  // @HiveField(22)
   final Company company;
+
+  // @HiveField(23)
   final String ein;
+
+  // @HiveField(24)
   final String ssn;
+
+  // @HiveField(25)
   final String userAgent;
+
+  // @HiveField(26)
   final Crypto crypto;
+
+  // @HiveField(27)
   final String role;
+
   EmployeeModel({
     required this.id,
     required this.firstName,
@@ -179,24 +239,25 @@ class EmployeeModel {
       height: map['height'].toDouble() as double,
       weight: map['weight'].toDouble() as double,
       eyeColor: map['eyeColor'] as String,
-      hair: Hair.fromMap(map['hair'] as Map<String,dynamic>),
+      hair: Hair.fromMap(map['hair'] as Map<String, dynamic>),
       ip: map['ip'] as String,
-      address: Address.fromMap(map['address'] as Map<String,dynamic>),
+      address: Address.fromMap(map['address'] as Map<String, dynamic>),
       macAddress: map['macAddress'] as String,
       university: map['university'] as String,
-      bank: Bank.fromMap(map['bank'] as Map<String,dynamic>),
-      company: Company.fromMap(map['company'] as Map<String,dynamic>),
+      bank: Bank.fromMap(map['bank'] as Map<String, dynamic>),
+      company: Company.fromMap(map['company'] as Map<String, dynamic>),
       ein: map['ein'] as String,
       ssn: map['ssn'] as String,
       userAgent: map['userAgent'] as String,
-      crypto: Crypto.fromMap(map['crypto'] as Map<String,dynamic>),
+      crypto: Crypto.fromMap(map['crypto'] as Map<String, dynamic>),
       role: map['role'] as String,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory EmployeeModel.fromJson(String source) => EmployeeModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory EmployeeModel.fromJson(String source) =>
+      EmployeeModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -206,67 +267,66 @@ class EmployeeModel {
   @override
   bool operator ==(covariant EmployeeModel other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.id == id &&
-      other.firstName == firstName &&
-      other.lastName == lastName &&
-      other.maidenName == maidenName &&
-      other.age == age &&
-      other.gender == gender &&
-      other.email == email &&
-      other.phone == phone &&
-      other.username == username &&
-      other.password == password &&
-      other.birthDate == birthDate &&
-      other.image == image &&
-      other.bloodGroup == bloodGroup &&
-      other.height == height &&
-      other.weight == weight &&
-      other.eyeColor == eyeColor &&
-      other.hair == hair &&
-      other.ip == ip &&
-      other.address == address &&
-      other.macAddress == macAddress &&
-      other.university == university &&
-      other.bank == bank &&
-      other.company == company &&
-      other.ein == ein &&
-      other.ssn == ssn &&
-      other.userAgent == userAgent &&
-      other.crypto == crypto &&
-      other.role == role;
+
+    return other.id == id &&
+        other.firstName == firstName &&
+        other.lastName == lastName &&
+        other.maidenName == maidenName &&
+        other.age == age &&
+        other.gender == gender &&
+        other.email == email &&
+        other.phone == phone &&
+        other.username == username &&
+        other.password == password &&
+        other.birthDate == birthDate &&
+        other.image == image &&
+        other.bloodGroup == bloodGroup &&
+        other.height == height &&
+        other.weight == weight &&
+        other.eyeColor == eyeColor &&
+        other.hair == hair &&
+        other.ip == ip &&
+        other.address == address &&
+        other.macAddress == macAddress &&
+        other.university == university &&
+        other.bank == bank &&
+        other.company == company &&
+        other.ein == ein &&
+        other.ssn == ssn &&
+        other.userAgent == userAgent &&
+        other.crypto == crypto &&
+        other.role == role;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-      firstName.hashCode ^
-      lastName.hashCode ^
-      maidenName.hashCode ^
-      age.hashCode ^
-      gender.hashCode ^
-      email.hashCode ^
-      phone.hashCode ^
-      username.hashCode ^
-      password.hashCode ^
-      birthDate.hashCode ^
-      image.hashCode ^
-      bloodGroup.hashCode ^
-      height.hashCode ^
-      weight.hashCode ^
-      eyeColor.hashCode ^
-      hair.hashCode ^
-      ip.hashCode ^
-      address.hashCode ^
-      macAddress.hashCode ^
-      university.hashCode ^
-      bank.hashCode ^
-      company.hashCode ^
-      ein.hashCode ^
-      ssn.hashCode ^
-      userAgent.hashCode ^
-      crypto.hashCode ^
-      role.hashCode;
+        firstName.hashCode ^
+        lastName.hashCode ^
+        maidenName.hashCode ^
+        age.hashCode ^
+        gender.hashCode ^
+        email.hashCode ^
+        phone.hashCode ^
+        username.hashCode ^
+        password.hashCode ^
+        birthDate.hashCode ^
+        image.hashCode ^
+        bloodGroup.hashCode ^
+        height.hashCode ^
+        weight.hashCode ^
+        eyeColor.hashCode ^
+        hair.hashCode ^
+        ip.hashCode ^
+        address.hashCode ^
+        macAddress.hashCode ^
+        university.hashCode ^
+        bank.hashCode ^
+        company.hashCode ^
+        ein.hashCode ^
+        ssn.hashCode ^
+        userAgent.hashCode ^
+        crypto.hashCode ^
+        role.hashCode;
   }
 }

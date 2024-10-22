@@ -6,17 +6,12 @@ part of 'Employee_list.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-EmployeeList _$EmployeeListFromJson(Map<String, dynamic> json) {
-  log(r"in _$EmployeeListFromJson");
-  log(json.length.toString());
-  return  EmployeeList(
-  
-      list: (json["users"] as List<dynamic>?)
-              ?.map((e) => EmployeeModel.fromMap(e ))
+EmployeeList _$EmployeeListFromJson(Map<String, dynamic> json) => EmployeeList(
+      list: (json['list'] as List<dynamic>?)
+              ?.map((e) => EmployeeModel.fromJson(e as String))
               .toList() ??
           const [],
     );
-}
 
 Map<String, dynamic> _$EmployeeListToJson(EmployeeList instance) =>
     <String, dynamic>{

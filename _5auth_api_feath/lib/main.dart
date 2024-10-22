@@ -1,17 +1,19 @@
+import 'package:_5auth_api_feath/common/hive_services.dart';
 import 'package:_5auth_api_feath/common/http.dart';
 import 'package:_5auth_api_feath/redux/app/app_state.dart';
 import 'package:_5auth_api_feath/redux/app/store.dart';
 import 'package:_5auth_api_feath/repository/employee/provider.dart';
 import 'package:_5auth_api_feath/repository/employee/repository.dart';
-import 'package:_5auth_api_feath/view/employee_list.dart';
 import 'package:_5auth_api_feath/view/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main()async {
   WidgetsFlutterBinding.ensureInitialized();
-  Http().init(store);
+  Http().init(store);  //here we initialize the the http class varibals 
+  await HiveServices().initialize();  //here we initelize the hive servises we use the singletone so all time only single instace is return of Hiveservises class 
+
   runApp(const MyApp());
 }
 
